@@ -41,7 +41,7 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
-      # cache docker
+     # cache docker
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
@@ -49,6 +49,13 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+
+    #  # get tag name
+    #   - name: Set output for get tag
+    #     uses: actions/checkout@v1
+    #     id: vars
+    #     run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
       
      # build and push
       - name: Build and push
@@ -58,7 +65,7 @@ jobs:
           context: ./
           file: ./build/package/Dockerfile
           push: true
-          tags: dadez/file-upload:latest
+          tags: dadez/file-upload:latest, dadez/file-upload:${GITHUB_REF#refs/*/}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
            
