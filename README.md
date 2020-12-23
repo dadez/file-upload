@@ -1,6 +1,6 @@
 # file-upload
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/dadez/file-upload)](https://goreportcard.com/report/github.com/dadez/file-upload) ![version](https://img.shields.io/badge/version-v.0.0.20-blue.svg?cacheSeconds=2592000)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dadez/file-upload)](https://goreportcard.com/report/github.com/dadez/file-upload) ![version](https://img.shields.io/badge/version-v.0.0.21-blue.svg?cacheSeconds=2592000)
 
 ## Goal
 
