@@ -50,11 +50,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-    #  # get tag name
-    #   - name: Set output for get tag
-    #     uses: actions/checkout@v1
-    #     id: vars
-    #     run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+     # get tag name
+      - name: Set output for get tag
+        uses: actions/checkout@v1
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
       
      # build and push
@@ -65,7 +65,7 @@ jobs:
           context: ./
           file: ./build/package/Dockerfile
           push: true
-          tags: dadez/file-upload:latest, dadez/file-upload:${GITHUB_REF#refs/*/}
+          tags: dadez/file-upload:latest, dadez/file-upload:${{ steps.vars.outputs.tag }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
            
