@@ -82,7 +82,7 @@ just connect to http://localhost:4500, login and choose the file(s) to upload, p
 
 ---
 
-> *this is the original readme for the forked repo*
+> *this is the original readme from the forked repo*
 
 # How to process file uploads in Go
 
