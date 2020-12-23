@@ -1,14 +1,15 @@
 # file-upload
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/dadez/file-upload)](https://goreportcard.com/report/github.com/dadez/file-upload) ![version](https://img.shields.io/badge/version-0.19-blue.svg?cacheSeconds=2592000)
-# Goal
+[![Go Report Card](https://goreportcard.com/badge/github.com/dadez/file-upload)](https://goreportcard.com/report/github.com/dadez/file-upload) ![version](https://img.shields.io/badge/version-v.0.0.20-blue.svg?cacheSeconds=2592000)
 
-The purpose of this program is to be able to upload certificate files in a PEM format for later use as sidecar container together with https://github.com/dadez/cert-exporter
+## Goal
 
+The purpose of this program is to be able to upload certificate files in a PEM format for later use as sidecar container together with https://github.com/dadez/cert-exporter  
+Only upload of valid PEM files will be accepted
 
-# Usage
+## Usage
 
-## configuration
+### configuration
 
 | environment variable | default value | description |
 |:--- | :---:| ---|
@@ -18,7 +19,10 @@ The purpose of this program is to be able to upload certificate files in a PEM f
 | `LOG_LEVEL` | `info` | loglevel for applications logs, possible values are: `trace`, `debug`, `info`, `warn`, `error`, `fatal`, `panic` see https://github.com/sirupsen/logrus#level-logging
 
 
-## start locally
+
+## build & run
+
+### go run
 
 ```bash
 cd file-upload # move directory to this project
@@ -26,37 +30,59 @@ cd file-upload # move directory to this project
 go run cmd/app/main.go
 ```
 
-you should see the following output: `fileupload server ready`
+### run from compiled binary
 
-## build docker imgae
+get a release on the [release page](https://github.com/dadez/file-upload/releases)
+
+```bash
+# extract binary
+tar xzf file-upload_<version>_<arch>.tar.gz
+
+# run binary
+./file-upload
+```
+
+
+### build docker image
 
 ```bash
 cd file-upload # move directory to this project
 docker build -t file-upload:latest -f build/package/Dockerfile .
 ```
 
-## start as docker image
+### run docker image
 
 ```bash
 docker run -p 4500:4500 file-upload:latest
 ```
 
-## Upload a cerfificate with curl
+## upload certificates
 
-| using test credentials  
-| On production (kubernetes), this files should be overriden
+### a single certificate with curl
 
 ```bash
 cd file-upload # move directory to this project
 curl -X POST -u user:secret -F file=@test/github.crt.pem http://localhost:4500/upload
 ```
 
-## Upload mulitples files with curl
+### multiple certificates with curl
 
 just repeat the `-F file=@/path/to/file.pem` part in your command
 
------------------------------------------------------------------------------------------
-# original
+
+### from web UI
+
+just connect to http://localhost:4500, login and choose the file(s) to upload, press on submit.
+
+
+# todo
+
+- [ ] run behind https
+- [ ] prettier web part
+
+---
+
+> *this is the original readme for the forked repo*
 
 # How to process file uploads in Go
 
