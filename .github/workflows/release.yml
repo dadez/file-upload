@@ -3,10 +3,8 @@ name: goreleaser
 on:
   push:
     tags:
-      - "v*.*.*"
-    # branches:
-    #   - '*'
-    #   - '!master'
+      - 'v*.*.*'
+      # - '!**-rc*'
 
 jobs:
   goreleaser:
