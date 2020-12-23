@@ -44,6 +44,8 @@ func ValidatePEM(f string) {
 	opts := x509.VerifyOptions{
 		// DNSName: name,
 		Roots: roots,
+		// accept all keyusages kind
+		KeyUsages: []x509.ExtKeyUsage{x509.ExtKeyUsageAny},
 	}
 
 	if _, err := cert.Verify(opts); err != nil {
