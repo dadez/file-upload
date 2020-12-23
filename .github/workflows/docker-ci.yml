@@ -52,7 +52,6 @@ jobs:
 
      # get tag name
       - name: Set output for get tag
-        uses: actions/checkout@v1
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
