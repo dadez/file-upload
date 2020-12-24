@@ -1,6 +1,6 @@
 # file-upload
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/dadez/file-upload)](https://goreportcard.com/report/github.com/dadez/file-upload) ![version](https://img.shields.io/badge/version-v.0.0.21-blue.svg?cacheSeconds=2592000)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dadez/file-upload)](https://goreportcard.com/report/github.com/dadez/file-upload) ![version](https://img.shields.io/badge/version-v.0.0.22-blue.svg?cacheSeconds=2592000)
 
 ## Goal
 
@@ -78,8 +78,8 @@ just connect to http://localhost:4500, login and choose the file(s) to upload, p
 # todo
 
 - [ ] run behind https
-- [ ] do not crash container on cert validation (ie: cert expired `time="2020-12-23T17:01:26Z" level=fatal msg="failed to verify certificatex509: certificate has expired or is not yet valid: current time 2020-12-23T17:01:26Z is after 2020-12-11T13:04:36Z" `)
-- [ ] do not crash container when file is invalid (ie: `2020/12/23 16:52:46 http: superfluous response.WriteHeader call from github.com/dadez/file-upload/pkg/upload.UploadHandler (upload.go:57)`)
+- [x] do not crash container on cert validation (ie: cert expired `time="2020-12-23T17:01:26Z" level=fatal msg="failed to verify certificatex509: certificate has expired or is not yet valid: current time 2020-12-23T17:01:26Z is after 2020-12-11T13:04:36Z" `)
+- [x] do not crash container when file is invalid (ie: `2020/12/23 16:52:46 http: superfluous response.WriteHeader call from github.com/dadez/file-upload/pkg/upload.UploadHandler (upload.go:57)`)
 - [ ] prettier web part
 
 ---
