@@ -55,6 +55,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		_, err = file.Read(buff)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
+			log.Error("Error reading file: ", fileHeader.Filename, " error is ", err)
 			return
 		}
 
@@ -78,6 +79,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		err = os.MkdirAll(uploadsDirectoryPath, os.ModePerm)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
+			log.Error("Error creating uploads directory ", uploadsDirectoryPath, "error is: ", err)
 			return
 		}
 
@@ -86,6 +88,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		f, err := os.Create(uploadsDirectoryPath + "/" + fileHeader.Filename)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
+			log.Error("Error creating empty file: ", uploadsDirectoryPath+"/"+fileHeader.Filename, "error is: ", err)
 			return
 		}
 
@@ -95,7 +98,7 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		_, err = io.Copy(f, file)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
-			log.Error("Error writing file")
+			log.Error("Error writing file: ", file, "error is: ", err)
 			return
 		}
 
