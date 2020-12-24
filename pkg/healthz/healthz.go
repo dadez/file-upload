@@ -8,7 +8,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// Healthz Handler for use in kubernetes
+// HealthzHandler for use in kubernetes
 func HealthzHandler(w http.ResponseWriter, r *http.Request) {
 	started := time.Now()
 	duration := time.Since(started)
