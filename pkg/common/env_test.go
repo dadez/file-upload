@@ -14,8 +14,11 @@ func TestGetEnv(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
+		{"test upload directory", args{"UPLOADS_DIRECTORY_PATH", "uploads"},
+			"uploads"},
+		{"dummy test", args{"DUMMY_VARIABLE", "dummyValue"}, "dummyValue"},
 	}
+
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetEnv(tt.args.key, tt.args.fallback); got != tt.want {
