@@ -14,12 +14,12 @@ func ValidatePEM(f string) {
 	certFile := f
 	certPEM, err := ioutil.ReadFile(certFile)
 	if err != nil {
-		log.Fatal("failed read certificatee file" + err.Error())
+		log.Error("Failed read certificatee file" + err.Error())
 	}
 	roots := x509.NewCertPool()
 	ok := roots.AppendCertsFromPEM([]byte(certPEM))
 	if !ok {
-		log.Fatal("failed to parse certificate, file will be removed")
+		log.Error("Failed to parse certificate, file will be removed")
 		err := os.Remove(certFile)
 		if err != nil {
 			log.Error("could not delete file" + err.Error())
@@ -29,14 +29,14 @@ func ValidatePEM(f string) {
 
 	block, _ := pem.Decode([]byte(certPEM))
 	if block == nil {
-		log.Fatal("Faile to parse certificate PEM" + err.Error())
+		log.Error("Failed to parse certificate PEM" + err.Error())
 		return
 	}
 
 	cert, err := x509.ParseCertificate(block.Bytes)
 	if err != nil {
-		log.Fatal("failed to parse certificate" + err.Error())
-		//fmt.Errorf("failed to parse certificate: %v", err.Error())
+		log.Error("Failed to parse certificate" + err.Error())
+		//fmt.Errorf("Failed to parse certificate: %v", err.Error())
 		return
 
 	}
@@ -49,8 +49,8 @@ func ValidatePEM(f string) {
 	}
 
 	if _, err := cert.Verify(opts); err != nil {
-		log.Fatal("failed to verify certificate" + err.Error())
-		// fmt.Errorf("failed to verify certificate: %v", err.Error())
+		log.Error("Failed to verify certificate" + err.Error())
+		// fmt.Errorf("Failed to verify certificate: %v", err.Error())
 		return
 	}
 
