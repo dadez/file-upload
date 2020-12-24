@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"os"
 	"reflect"
 	"testing"
 )
@@ -16,9 +17,12 @@ func Test_validateFromFile(t *testing.T) {
 		want bool
 	}{
 		// TODO: Add test cases.
+		{"test credentials from file", args{"user", "secret"}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			// override AUTH_FILES_PATH as test runs from pkg
+			os.Setenv("AUTH_FILES_PATH", "../../test/")
 			if got := validateFromFile(tt.args.username, tt.args.password); got != tt.want {
 				t.Errorf("validateFromFile() = %v, want %v", got, tt.want)
 			}
