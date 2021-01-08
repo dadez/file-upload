@@ -56,14 +56,16 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			log.Error("Error reading file: ", fileHeader.Filename, " error is ", err)
-			return
+			// return
+			continue
 		}
 
 		// check for file extension we only allow pem files
 		if filepath.Ext(fileHeader.Filename) != ".pem" {
 			http.Error(w, "The provided file format is not allowed.", http.StatusBadRequest)
 			log.Error("uploading file ", fileHeader.Filename, " failed, only .pem are allowed")
-			return
+			// return
+			continue
 		}
 
 		// todo: check what does seek do
